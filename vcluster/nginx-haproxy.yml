@@ -1,0 +1,67 @@
+version: '3.1'
+
+services:
+  nginx1:
+    image: "endial/nginx:1.16.1"
+    restart: always
+    volumes:
+      - /Volumes/RamDisk/Volumes/server1/srv/conf:/srv/conf
+      - /Volumes/RamDisk/Volumes/server1/srv/www:/srv/www
+      - /Volumes/RamDisk/Volumes/server1/var/log:/var/log
+    ports:
+      - "81:8080"
+    expose: 
+      - 81
+    networks:
+      - backend
+
+  nginx2:
+    image: "endial/nginx:1.16.1"
+    restart: always
+    volumes:
+      - /Volumes/RamDisk/Volumes/server2/srv/conf:/srv/conf
+      - /Volumes/RamDisk/Volumes/server2/srv/www:/srv/www
+      - /Volumes/RamDisk/Volumes/server2/var/log:/var/log
+    ports:
+      - "82:8080"
+    expose: 
+      - 82
+    networks:
+      - backend
+
+  nginx3:
+    image: "endial/nginx:1.16.1"
+    restart: always
+    volumes:
+      - /Volumes/RamDisk/Volumes/server3/srv/conf:/srv/conf
+      - /Volumes/RamDisk/Volumes/server3/srv/www:/srv/www
+      - /Volumes/RamDisk/Volumes/server3/var/log:/var/log
+    ports:
+      - "83:8080"
+    expose: 
+      - 83
+    networks:
+      - backend
+
+  haproxy:
+    image: "endial/haproxy:latest"
+    restart: always
+    volumes:
+      - /Volumes/RamDisk/Volumes/single/srv/conf:/srv/conf
+      - /Volumes/RamDisk/Volumes/single/var/log:/var/log
+    ports:
+      - "80:8080"
+      - "8888:8888"
+    expose: 
+      - 80
+    links:
+      - nginx1
+      - nginx2
+      - nginx3
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+  backend:

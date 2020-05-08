@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  nginx:
+    image: "endial/nginx:1.16.1"
+    restart: always
+    volumes:
+      - /tmp/volumes/single/srv/conf:/srv/conf
+      - /tmp/volumes/single/srv/www:/srv/www
+      - /tmp/volumes/single/var/log:/var/log
+    ports:
+      - "80:8080"
+    networks:
+      - frontend
+
+networks:
+  frontend:
+  backend:
