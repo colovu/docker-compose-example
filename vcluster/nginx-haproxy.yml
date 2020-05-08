@@ -5,9 +5,9 @@ services:
     image: "endial/nginx:1.16.1"
     restart: always
     volumes:
-      - /Volumes/RamDisk/Volumes/server1/srv/conf:/srv/conf
-      - /Volumes/RamDisk/Volumes/server1/srv/www:/srv/www
-      - /Volumes/RamDisk/Volumes/server1/var/log:/var/log
+      - /tmp/volumes/server1/srv/conf:/srv/conf
+      - /tmp/volumes/server1/srv/www:/srv/www
+      - /tmp/volumes/server1/var/log:/var/log
     ports:
       - "81:8080"
     expose: 
@@ -19,9 +19,9 @@ services:
     image: "endial/nginx:1.16.1"
     restart: always
     volumes:
-      - /Volumes/RamDisk/Volumes/server2/srv/conf:/srv/conf
-      - /Volumes/RamDisk/Volumes/server2/srv/www:/srv/www
-      - /Volumes/RamDisk/Volumes/server2/var/log:/var/log
+      - /tmp/volumes/server2/srv/conf:/srv/conf
+      - /tmp/volumes/server2/srv/www:/srv/www
+      - /tmp/volumes/server2/var/log:/var/log
     ports:
       - "82:8080"
     expose: 
@@ -33,9 +33,9 @@ services:
     image: "endial/nginx:1.16.1"
     restart: always
     volumes:
-      - /Volumes/RamDisk/Volumes/server3/srv/conf:/srv/conf
-      - /Volumes/RamDisk/Volumes/server3/srv/www:/srv/www
-      - /Volumes/RamDisk/Volumes/server3/var/log:/var/log
+      - /tmp/volumes/server3/srv/conf:/srv/conf
+      - /tmp/volumes/server3/srv/www:/srv/www
+      - /tmp/volumes/server3/var/log:/var/log
     ports:
       - "83:8080"
     expose: 
@@ -44,11 +44,11 @@ services:
       - backend
 
   haproxy:
-    image: "endial/haproxy:latest"
+    image: "endial/haproxy:2.0.14"
     restart: always
     volumes:
-      - /Volumes/RamDisk/Volumes/single/srv/conf:/srv/conf
-      - /Volumes/RamDisk/Volumes/single/var/log:/var/log
+      - /tmp/volumes/single/srv/conf:/srv/conf
+      - /tmp/volumes/single/var/log:/var/log
     ports:
       - "80:8080"
       - "8888:8888"
