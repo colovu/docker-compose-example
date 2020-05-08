@@ -8,10 +8,6 @@ services:
       - /tmp/volumes/server1/srv/conf:/srv/conf
       - /tmp/volumes/server1/srv/www:/srv/www
       - /tmp/volumes/server1/var/log:/var/log
-    ports:
-      - "81:8080"
-    expose: 
-      - 81
     networks:
       - backend
 
@@ -22,10 +18,6 @@ services:
       - /tmp/volumes/server2/srv/conf:/srv/conf
       - /tmp/volumes/server2/srv/www:/srv/www
       - /tmp/volumes/server2/var/log:/var/log
-    ports:
-      - "82:8080"
-    expose: 
-      - 82
     networks:
       - backend
 
@@ -36,10 +28,6 @@ services:
       - /tmp/volumes/server3/srv/conf:/srv/conf
       - /tmp/volumes/server3/srv/www:/srv/www
       - /tmp/volumes/server3/var/log:/var/log
-    ports:
-      - "83:8080"
-    expose: 
-      - 83
     networks:
       - backend
 
